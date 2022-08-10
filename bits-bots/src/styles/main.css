@@ -1,0 +1,5 @@
+@import "./layout.css";
+
+/* PARTIALS */
+@import "./partials/products.css";
+@import "./partials/authentication.css";

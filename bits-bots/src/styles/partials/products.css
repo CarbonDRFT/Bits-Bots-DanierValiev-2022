@@ -1,0 +1,32 @@
+.product__container {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.product__container p {
+  min-height: 4.5rem;
+}
+
+.product__content {
+  position: relative;
+}
+.product__content:hover {
+  margin-bottom: 5px;
+}
+
+.product__image--container {
+  text-align: center;
+}
+
+.product__img {
+  height: 200px;
+  width: 200px;
+}
+
+.add__favorite--btn:active {
+  color: yellow;
+}
+
+.orders {
+  background-color: aliceblue;
+}
