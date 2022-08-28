@@ -19,9 +19,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    overflow: hidden;
   }
 
   &__entry {
+    width: 100%;
     font-size: 1.6rem;
     font-weight: normal;
 

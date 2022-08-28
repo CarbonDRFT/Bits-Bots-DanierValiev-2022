@@ -26,7 +26,12 @@ const shoppingSlice = createSlice({
           quantity: 1,
         });
       } else {
-        state.cartItems[current(state.cartItems).map(cartItem => cartItem.product).indexOf(action.payload)].quantity += 1;
+        state.cartItems = current(state.cartItems).map(
+          cartItem => cartItem.product.id === action.payload.id ? {
+            ...cartItem,
+            quantity: cartItem.quantity + 1,
+          } : cartItem
+        );
       }
     },
     removeProductFromCart: (state, action: PayloadAction<Product['id']>) => {

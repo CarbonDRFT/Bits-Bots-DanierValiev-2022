@@ -4,10 +4,13 @@ import { useParams } from 'react-router-dom';
 
 import DefaultLayout from '../layouts/DefaultLayout';
 import ContentWrapper from '../components/elements/ContentWrapper';
+import Icon from '../components/elements/Icon';
+import Input from '../components/elements/Input';
 import CategoryBoxes from '../components/elements/CategoryBoxes';
 import Collection from '../components/elements/Collection';
 import ProductBox from '../components/blocks/ProductBox';
 import Loader from '../components/elements/Loader';
+import Pagination from '../components/elements/Pagination';
 import { fetchProductData } from '../functions/fetchFunctions';
 
 import type { ChangeEvent } from 'react';
@@ -42,19 +45,42 @@ const HomePage = (): JSX.Element => {
   let filteredProducts: Product[] = searchText.length > 0
     ? productData.filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()))
     : productData;
-  if (activeCategories.length > 0) {
+  if (activeCategories && activeCategories.length > 0) {
     filteredProducts = filteredProducts.filter(
       product =>
       activeCategories.includes(product.category)
     );
   }
 
+  const totalPageCount: number = Math.ceil(filteredProducts.length / 20);
+  const allPages = Array.from(Array(totalPageCount), (_, i) => i + 1).map(
+    page => {
+      return {
+        number: page,
+        link: `/page/${page}`,
+      };
+    }
+  );
+
   return (
     <DefaultLayout>
       <ContentWrapper>
-        <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)} />
+        <Input
+          icon={<Icon name="magnifying-glass" type="fas" />}
+          type="text"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)}
+          placeholder="Search for products..."
+          contentStyles={{
+            marginBottom: '2.4rem',
+          }}
+          style={{
+            width: '100%',
+            maxWidth: '32rem',
+          }}
+        />
         <CategoryBoxes categories={categoryData} />
         {!isProductsLoading ? (
+          <>
           <Collection
             columnSize="24rem"
           >
@@ -64,6 +90,10 @@ const HomePage = (): JSX.Element => {
               )
             ) : null}
           </Collection>
+          {totalPageCount > 1 ? (
+            <Pagination pages={allPages} currentPage={currentPage} />
+          ) : null}
+          </>
         ) : (
           <div className="loader-wrap">
             <Loader />

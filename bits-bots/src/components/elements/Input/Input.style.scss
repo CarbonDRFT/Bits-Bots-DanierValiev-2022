@@ -7,9 +7,28 @@
     font-size: 1.3rem;
   }
 
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    .icon {
+      color: var(--lighterTextColor);
+    }
+  }
+
   input {
     padding: 1.2rem;
+    width: 100%;
+    background: none;
+    color: var(--lighterTextColor);
     border-radius: 0;
-    border: 1px solid var(--textColor);
+    border: 1px solid var(--shadowColor);
+    transition: var(--slowTransitionSpeed);
+
+    &:focus {
+      color: var(--textColor);
+      border-color: var(--lighterTextColor);      
+    }
   }
 }

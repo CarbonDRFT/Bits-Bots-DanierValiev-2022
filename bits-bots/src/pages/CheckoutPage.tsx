@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout';
 
 import DefaultLayout from '../layouts/DefaultLayout';
 import ContentWrapper from '../components/elements/ContentWrapper';
 import Loader from '../components/elements/Loader';
 import Input from '../components/elements/Input';
-import Button from '../components/elements/Button';
-import Icon from '../components/elements/Icon';
 import { addOrder } from '../functions/updateFunctions';
 import { resetCart } from '../redux/slices/shoppingSlice';
 
@@ -22,18 +21,19 @@ const CheckoutPage = (): JSX.Element => {
   const { user } = JSON.parse(localStorage.getItem('currentUser') || '{}');
   const [name, setName] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [successfulSubmit, setSuccessfulSubmit] = useState<boolean>(false);
   const [address, setAddress] = useState<string>('');
   const [pin, setPin] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const cardItemsTotal = cartItems.reduce((accumulator, item) => accumulator + item.quantity * (item.product.price as number), 0);
 
   if (cartItems.length === 0) return <Navigate to="/" />;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+  }
 
+  const payNow = async () => {
     if (
       name !== '' &&
       address !== '' &&
@@ -47,7 +47,6 @@ const CheckoutPage = (): JSX.Element => {
         pincode: parseInt(pin),
         phone: parseInt(phoneNumber),
       }, cartItems, user).then(() => {
-        setSuccessfulSubmit(true);
         setLoading(false);
         dispatch(resetCart());
       });
@@ -63,7 +62,7 @@ const CheckoutPage = (): JSX.Element => {
             <Loader />
           </div>
         ) : (
-          !successfulSubmit ? (
+          <>
             <form onSubmit={(e: FormEvent) => handleSubmit(e)}>
               <Input
                 label="Full name"
@@ -89,20 +88,30 @@ const CheckoutPage = (): JSX.Element => {
                 name="phonenumber"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)}
                 type="number"
+                contentStyles={{
+                  marginBottom: '2.4rem',
+                }}
                 required
               />
-              <Button variant="blue-primary" text="Submit" />
             </form>
-          ) : (
-            <div className="success-wrap">
-              <Icon name="check-circle" type="fas" />
-              <h3 className="success-wrap__text">Your order has been successfully submited.</h3>
-              <Button
-                text="View my orders"
-                handler={() => navigate('/orders')}
+            {(
+              name !== '' &&
+              address !== '' &&
+              pin !== '' &&
+              phoneNumber !== ''
+            ) ? (
+              <StripeCheckout
+                stripeKey="pk_test_51Lbr5bF8MYzIRH5hDfaCGOUkGBAumRexCCLwQ2NudpiCfkhSriLhHWV5OItxv8IAw6YppAbKXkSXqAhQ3sIoTwGf00RBGfkCkK"
+                token={payNow}
+                label="Pay now"
+                name="Pay with your credit card"
+                amount={cardItemsTotal * 100}
+                email={user.email}
+                currency="NOK"
+                reconfigureOnUpdate={false}
               />
-            </div>
-          )
+            ) : null}
+          </>
         )}
       </ContentWrapper>
     </DefaultLayout>

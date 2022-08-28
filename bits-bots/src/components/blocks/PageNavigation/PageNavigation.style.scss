@@ -36,13 +36,18 @@
 
   &__branding {
     display: flex;
+    align-items: center;
+    gap: 1.2rem;
   }
 
   &__logo {
-    margin-right: 1.2rem;
-    width: 2.2rem;
-    height: 2.2rem;
-    background-color: var(--primaryBlue);
+    width: 2.4rem;
+    height: 2.4rem;
+
+    path {
+      stroke: var(--primaryBlue);
+      stroke-width: 24px;
+    }
   }
 
   &__title {
@@ -67,8 +72,13 @@
       display: flex;
     }
 
-    &:hover { opacity: 1; }
-    &--spaced { margin-left: auto; }
+    &:hover {
+      opacity: 1;
+    }
+
+    &--spaced {
+      margin-left: auto;
+    }
   }
 
   &__cart-button {
@@ -79,7 +89,7 @@
     .button__text {
       display: none;
     }
-  
+
     @media (min-width: 960px) {
       margin-left: unset;
 
@@ -123,7 +133,9 @@
     border-left: 1px solid var(--shadowColor);
     transition: right var(--slowTransitionSpeed);
 
-    &--hidden { right: -40rem; }
+    &--hidden {
+      right: -40rem;
+    }
 
     @media (min-width: 960px) {
       display: none;
@@ -148,7 +160,13 @@
   &__mobile-item {
     cursor: pointer;
     font-size: 1.8rem;
-  
-    &--spaced { margin-top: auto; }
+
+    &--spaced {
+      margin-top: auto;
+    }
   }
+}
+
+.logo__icon {
+  width: 18rem;
 }

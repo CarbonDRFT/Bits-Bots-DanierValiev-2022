@@ -21,10 +21,6 @@ const MainFormLayout = ({ background, children }: Props): JSX.Element =>
             '/img/slide-example-1.jpg',
             '/img/slide-example-2.jpg',
           ]}
-          extraStyles={{
-            width: '40rem',
-            height: '48rem',
-          }}
         />
         <div className="auth-box__content">
           {children}

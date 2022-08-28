@@ -1,6 +1,8 @@
 .category-boxes {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.2rem;
+  margin-bottom: 2.4rem;
 
   &__box {
     display: inline-block;
@@ -10,9 +12,11 @@
     border-radius: 0.4rem;
     transition: background-color var(--slowTransitionSpeed);
     cursor: pointer;
+    user-select: none;
 
     &--active {
       background-color: var(--primaryBlue);
+      color: var(--lightColor)
     }
-  }  
+  }
 }
