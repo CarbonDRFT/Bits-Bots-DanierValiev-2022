@@ -1,0 +1,154 @@
+.page-navigation {
+  position: sticky;
+  top: 0;
+  margin-bottom: 2.4rem;
+  padding: 1.8rem 0;
+  background-color: var(--pageBackground);
+  border-bottom: 1px solid var(--shadowColor);
+  transition: padding var(--slowTransitionSpeed);
+
+  a {
+    text-decoration: none;
+  }
+
+  &--sticky {
+    padding: 1.2rem 0;
+  }
+
+  &__item,
+  &__mobile-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    user-select: none;
+
+    & > a {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+  }
+
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__branding {
+    display: flex;
+  }
+
+  &__logo {
+    margin-right: 1.2rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: var(--primaryBlue);
+  }
+
+  &__title {
+    font-size: 1.7rem;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    margin-left: 2.4rem;
+    gap: 2.4rem;
+    flex: 1;
+  }
+
+  &__item {
+    display: none;
+    opacity: 0.6;
+    transition: opacity var(--slowTransitionSpeed);
+    cursor: pointer;
+
+    @media (min-width: 960px) {
+      display: flex;
+    }
+
+    &:hover { opacity: 1; }
+    &--spaced { margin-left: auto; }
+  }
+
+  &__cart-button {
+    display: flex;
+    margin-left: auto;
+    opacity: 1;
+
+    .button__text {
+      display: none;
+    }
+  
+    @media (min-width: 960px) {
+      margin-left: unset;
+
+      .button__text {
+        display: block;
+      }
+    }
+  }
+
+  &__nav-hider {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 2.4rem;
+    cursor: pointer;
+
+    @media (min-width: 960px) {
+      display: none;
+    }
+  }
+
+  &__hider-bar {
+    width: 24px;
+    height: 2px;
+    background-color: var(--textColor);
+  }
+
+  &__mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 2.4rem;
+    width: 100%;
+    max-width: 40rem;
+    height: 100vh;
+    background: var(--pageBackground);
+    color: var(--textColor);
+    border-left: 1px solid var(--shadowColor);
+    transition: right var(--slowTransitionSpeed);
+
+    &--hidden { right: -40rem; }
+
+    @media (min-width: 960px) {
+      display: none;
+    }
+  }
+
+  &__nav-hider-cross {
+    margin-bottom: 4.8rem;
+    font-size: 2.4rem;
+    cursor: pointer;
+  }
+
+  &__mobile-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2.4rem;
+    flex: 1;
+    text-align: right;
+  }
+
+  &__mobile-item {
+    cursor: pointer;
+    font-size: 1.8rem;
+  
+    &--spaced { margin-top: auto; }
+  }
+}

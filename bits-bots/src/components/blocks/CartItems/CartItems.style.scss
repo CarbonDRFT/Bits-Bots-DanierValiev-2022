@@ -1,0 +1,21 @@
+.cart-items {
+  display: flex;
+  flex-direction: column;
+
+  &__empty-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.8rem 0;
+    text-align: center;
+
+    .icon {
+      margin-bottom: 1.8rem;
+      font-size: 3.6rem;
+    }
+  }
+
+  &__empty-label {
+    max-width: 20ch;
+  }
+}

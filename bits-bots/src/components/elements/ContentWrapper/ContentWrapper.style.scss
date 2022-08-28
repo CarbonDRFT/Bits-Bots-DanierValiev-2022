@@ -1,0 +1,9 @@
+.content-wrapper {
+  margin: 0 auto;
+  padding: 0 2.4rem;
+  width: 100%;
+  
+  @media (min-width: 960px) {
+    max-width: 1920px;
+  }
+}

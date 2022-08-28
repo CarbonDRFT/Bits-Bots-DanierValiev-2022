@@ -1,0 +1,46 @@
+.auth-box {
+  display: flex;
+  user-select: none;
+  box-shadow: var(--authFormShadow);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 2.4rem;
+    width: 40rem;
+    background-color: var(--pageBackground);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .input {
+      margin-bottom: 1.2rem;
+    }
+
+    .form__title {
+      margin-bottom: 1.2rem;
+    }
+
+    .form__description {
+      margin-bottom: 2.4rem;
+      font-size: 1.3rem;
+      color: var(--lighterTextColor);
+    }
+
+    .form__inputs {
+      margin-bottom: 3.6rem;
+    }
+
+    .form__submit-wrap {
+      margin-top: auto;
+
+      .button {
+        margin-top: 1.2rem;
+        width: 100%;
+      }
+    }
+  }
+}

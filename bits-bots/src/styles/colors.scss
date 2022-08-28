@@ -1,0 +1,23 @@
+:root {
+  --pageBackground: #fefefe;
+  --textColor: #191919;
+  --lighterTextColor: #313131;
+  --fadedColor: #b3b3b3;
+  --shadowColor: #d9d9d9;
+
+  --primaryRed: #c52233;
+  --primaryBlue: #4392f1;
+  --primaryGreen: #1fad3c;
+
+  --lightColor: #fefefe;
+  --darkColor: #191919;
+  --darkerColor: #090909;
+}
+
+.dark-theme {
+  --pageBackground: #191919;
+  --textColor: #fefefe;
+  --lighterTextColor: #c1c1c1;
+  --fadedColor: #414141;
+  --shadowColor: #323232;
+}

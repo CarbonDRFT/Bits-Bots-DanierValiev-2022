@@ -1,0 +1,12 @@
+.card-total {
+  display: flex;
+  align-items: center;
+  padding: 2.4rem 0;
+  width: 100%;
+  border-top: 1px solid var(--fadedColor);
+
+  &__price {
+    margin-right: auto;
+    font-weight: bold;
+  }
+}

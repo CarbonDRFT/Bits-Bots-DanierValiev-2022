@@ -1,0 +1,32 @@
+.order-box {
+  padding: 2.4rem;
+  border: 1px solid var(--shadowColor);
+
+  &:not(:last-of-type) {
+    margin-bottom: 4.8rem;
+  }
+
+  &__title {
+    margin-bottom: 1.2rem;
+  }
+
+  &__columns {
+    display: flex;
+    gap: 2.4rem;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__entry {
+    font-size: 1.6rem;
+    font-weight: normal;
+
+    &:last-of-type {
+      margin-bottom: 1.2rem;
+    }
+  }
+}

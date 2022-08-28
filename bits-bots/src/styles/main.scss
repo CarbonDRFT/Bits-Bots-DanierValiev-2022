@@ -1,0 +1,37 @@
+html {
+  font-size: 56.25%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+body {
+  font-size: 1.4rem;
+  font-family: "Lato", sans-serif;
+  margin: 0 5rem 0 5rem;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+h1 {
+  margin-bottom: 2.4rem;
+}
+
+.app-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--pageBackground);
+  color: var(--textColor);
+}
+
+.page-content {
+  margin-bottom: 2.4rem;
+}

@@ -1,0 +1,15 @@
+.loader-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12rem 0;
+}
+
+.loader {
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 0.3rem solid var(--shadowColor);
+  border-bottom: 0.3rem solid var(--lighterTextColor);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

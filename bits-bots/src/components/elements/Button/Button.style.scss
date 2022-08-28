@@ -1,0 +1,73 @@
+.button {
+  display: inline-flex;
+  align-items: stretch;
+  background-color: var(--pageBackground);
+  color: var(--textColor);
+  border: 1px solid var(--textColor);
+  cursor: pointer;
+  transition: var(--slowTransitionSpeed);
+  transition-property: background-color, color, border;
+
+  &:hover {
+    background-color: var(--textColor);
+    color: var(--pageBackground);
+  }
+
+  &--blue:hover {
+    background-color: var(--primaryBlue);
+    color: var(--lightColor);
+    border: 1px solid var(--primaryBlue);
+  }
+
+  &--blue-primary {
+    background-color: var(--primaryBlue);
+    color: var(--lightColor);
+    border: 1px solid var(--primaryBlue);
+
+    &:hover {
+      background-color: var(--primaryBlue);
+      color: var(--lightColor);
+    }
+  }
+
+  &--red:hover {
+    background-color: var(--primaryRed);
+    color: var(--lightColor);
+    border: 1px solid var(--primaryRed);
+  }
+
+  &--red-primary {
+    background-color: var(--primaryRed);
+    color: var(--pageBackground);
+    border: 1px solid var(--primaryRed);
+
+    &:hover {
+      background-color: var(--primaryRed);
+      color: var(--pageBackground);
+    }
+  }
+
+  &--primary {
+    background-color: var(--textColor);
+    color: var(--pageBackground);
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 0.8rem 2.4rem;
+    text-align: center;
+  }
+
+  &__counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.2rem;
+    background-color: var(--textColor);
+    color: var(--pageBackground);
+  }
+}

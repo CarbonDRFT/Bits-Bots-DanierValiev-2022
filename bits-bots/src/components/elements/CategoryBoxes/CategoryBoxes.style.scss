@@ -1,0 +1,18 @@
+.category-boxes {
+  display: flex;
+  gap: 1.2rem;
+
+  &__box {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background-color: var(--shadowColor);
+    font-size: 1.2rem;
+    border-radius: 0.4rem;
+    transition: background-color var(--slowTransitionSpeed);
+    cursor: pointer;
+
+    &--active {
+      background-color: var(--primaryBlue);
+    }
+  }  
+}

@@ -1,0 +1,51 @@
+.product-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--fadedColor);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 2.4rem;
+    flex: 1;
+  }
+
+  &__title {
+    margin-bottom: 0.8rem;
+    font-size: 1.7rem;
+  }
+
+  &__price {
+    margin-bottom: 1.8rem;
+    font-size: 1.5rem;
+    color: var(--lighterTextColor);
+  }
+
+  &__image {
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    background-color: var(--shadowColor);
+  }
+
+  &__like-icon {
+    color: var(--fadedColor);
+    cursor: pointer;
+    transition: color var(--slowTransitionSpeed);
+
+    &--liked {
+      color: var(--primaryRed);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    margin-top: auto;
+
+    .button {
+      flex: 1;
+    }
+  }
+}
