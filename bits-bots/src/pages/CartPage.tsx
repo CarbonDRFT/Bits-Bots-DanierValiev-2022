@@ -16,7 +16,7 @@ const CartPage = (): JSX.Element => {
   const [favouriteItemsData, setFavouriteItemsData] = useState<CartItem[]>([]);
   const [isFavouriteItemsLoading, setIsFavouriteItemsLoading] = useState<boolean>(false);
   const { cartItems, favourites } = useSelector((state: RootState) => state.shopping);
-  const cardItemsTotal = cartItems.reduce((accumulator, item) => accumulator + item.quantity * (item.product.price as number), 0);
+  const cartItemsTotal = cartItems.reduce((accumulator, item) => accumulator + item.quantity * (item.product.price as number), 0);
 
   useEffect(() => {
     setIsFavouriteItemsLoading(true);
@@ -59,7 +59,7 @@ const CartPage = (): JSX.Element => {
             <p className="cart-items__empty-label">There are no items in your cart yet.</p>
           </div>
         } />
-        <CartTotal totalPrice={cardItemsTotal} />
+        <CartTotal totalPrice={cartItemsTotal} />
         <h1>My favourites</h1>
         {!isFavouriteItemsLoading ? (
           <CartItems items={favouriteItemsData} variant="favourites" fallbackComponent={

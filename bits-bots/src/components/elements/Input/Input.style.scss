@@ -7,6 +7,12 @@
     font-size: 1.3rem;
   }
 
+  &__error {
+    margin-bottom: 0.8rem;
+    color: var(--primaryRed);
+    font-size: 1.3rem;
+  }
+
   &__content {
     display: flex;
     align-items: center;

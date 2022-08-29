@@ -6,9 +6,10 @@ import './CartTotal.style.scss';
 
 type Props = {
   totalPrice: number;
+  hideSubmit?: boolean;
 };
 
-const CartTotal = ({ totalPrice }: Props): JSX.Element => {
+const CartTotal = ({ totalPrice, hideSubmit }: Props): JSX.Element => {
   const navigate = useNavigate();
 
   return (
@@ -16,11 +17,13 @@ const CartTotal = ({ totalPrice }: Props): JSX.Element => {
        {totalPrice ? (
         <>
           <p className="card-total__price">Total: {totalPrice} kr.</p>
-          <Button
-            text="Checkout"
-            variant="blue-primary"
-            handler={() => navigate('/checkout')}
-          />
+          {!hideSubmit ? (
+            <Button
+              text="Checkout"
+              variant="blue-primary"
+              handler={() => navigate('/checkout')}
+            />
+          ) : null}
         </>
        ) : null}
     </div>

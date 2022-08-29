@@ -16,11 +16,19 @@ const Carousel = ({ slides, startingSlide = 0, showSlideIndicators = true, showC
   const [currentSlide, setCurrentSlide] = useState<number>(startingSlide);
 
   const handlePrevious = () => {
-    if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
+    if (currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1);
+    } else {
+      setCurrentSlide(slides.length - 1)
+    }
   };
 
   const handleNext = () => {
-    if (currentSlide < slides.length - 1) setCurrentSlide(currentSlide + 1);
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide(currentSlide + 1);
+    } else {
+      setCurrentSlide(0);
+    }
   }
 
   return (

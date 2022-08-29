@@ -1,42 +1,41 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 
 import MainFormLayout from '../layouts/MainFormLayout';
 import Button from '../components/elements/Button';
 import Input from '../components/elements/Input';
-
-import type { FormEvent, ChangeEvent } from 'react';
+import { registerSchema } from '../validations/userValidations';
 
 const LoginPage = (): JSX.Element => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassowrd, setConfirmPassword] = useState<string>('');
   const auth = getAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (
-      email !== '' &&
-      password !== '' &&
-      confirmPassowrd !== '' &&
-      password === confirmPassowrd
-    ) {
-      try {
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password,
-        );
-        toast.success('Your account has been created successfully. You are being redirected to the login page.');
-        navigate('/login');
-      } catch (error) {
-        console.log(error);
-        toast.error('Registration failed! This email address is already in use!');
-      }
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
+
+  const { ref: emailRef, ...emailProps} = register('email');  
+  const { ref: passwordRef, ...passwordProps} = register('password');
+  const { ref: confirmPasswordRef, ...confirmPasswordProps} = register('confirmpassword');
+
+  const onSubmit = async (data: any) => {
+    const { email, password } = data;
+
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      toast.success('Your account has been created successfully. You are being redirected to the login page.');
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+      toast.error('Creating the account failed. The email is possibly in use!');
     }
   }
 
@@ -45,7 +44,7 @@ const LoginPage = (): JSX.Element => {
       background="url('/img/login-background.jpg')"
     >
       <form
-        onSubmit={(e: FormEvent) => handleSubmit(e)}
+        onSubmit={handleSubmit(onSubmit)}
         className="auth-box__form"
       >
         <h1 className="form__title">Register</h1>
@@ -55,26 +54,23 @@ const LoginPage = (): JSX.Element => {
         <div className="form__inputs">
           <Input
             label="Email"
-            type="email"
-            name="email"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-            required
+            innerRef={emailRef}
+            error={errors?.email?.message as string}
+            {...emailProps}
           />
           <Input
             label="Password"
             type="password"
-            name="password"
-            minLength="6"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-            required
+            innerRef={passwordRef}
+            error={errors?.password?.message as string}
+            {...passwordProps}
           />
           <Input
             label="Confirm password"
             type="password"
-            name="confirm-password"
-            minLength="6"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
-            required
+            innerRef={confirmPasswordRef}
+            error={errors?.confirmpassword?.message as string}
+            {...confirmPasswordProps}
           />
         </div>
         <div className="form__submit-wrap">

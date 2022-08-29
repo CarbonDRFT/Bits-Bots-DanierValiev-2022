@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import DefaultLayout from '../layouts/DefaultLayout';
 import ContentWrapper from '../components/elements/ContentWrapper';
@@ -25,6 +25,7 @@ const HomePage = (): JSX.Element => {
   const { favourites } = useSelector((state: RootState) => state.shopping);
   const { activeCategories } = useSelector((state: RootState) => state.ui);
   const { page } = useParams();
+  const navigate = useNavigate();
   const currentPage: number = page ? parseInt(page) : 1;
 
   useEffect(() => {
@@ -33,6 +34,11 @@ const HomePage = (): JSX.Element => {
       setIsProductsLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    navigate('/');
+    // eslint-disable-next-line
+  }, [activeCategories, searchText]);
 
   const categoryData: Product['category'][] = productData.map(
     product =>

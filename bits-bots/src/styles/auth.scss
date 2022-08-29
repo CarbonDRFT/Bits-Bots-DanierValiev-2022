@@ -16,7 +16,8 @@
   
     @media (min-width: 960px) {
       width: 40rem;
-      height: 48rem;
+      height: unset;
+      min-height: 48rem;
     }
   }
 

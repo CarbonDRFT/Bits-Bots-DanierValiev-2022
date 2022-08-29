@@ -10,9 +10,6 @@ import CartPage from './pages/CartPage';
 import OrdersPage from './pages/OrdersPage';
 import CheckoutPage from './pages/CheckoutPage';
 import AdminPage from './pages/AdminPage';
-import AllProductsPage from './pages/admin/AllProductsPage';
-import AllOrdersPage from './pages/admin/AllOrdersPage';
-import AllUsersPage from './pages/admin/AllUsersPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import type { RootState } from './redux/store';
@@ -68,18 +65,6 @@ const App = (): JSX.Element => {
         <Route
           path="/admin"
           element={<ProtectedRoute element={<AdminPage />} fallbackPath="/login" />}
-        />
-        <Route
-          path="/admin/products"
-          element={<ProtectedRoute element={<AllProductsPage />} fallbackPath="/login" />}
-        />
-        <Route
-          path="/admin/orders"
-          element={<ProtectedRoute element={<AllOrdersPage />} fallbackPath="/login" />}
-        />
-        <Route
-          path="/admin/users"
-          element={<ProtectedRoute element={<AllUsersPage />} fallbackPath="/login" />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

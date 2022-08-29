@@ -24,6 +24,9 @@ const getFormattedText = (categoryName: string) => {
     case 'xbone':
       return 'Xbox One';
 
+      case 'nintendog':
+        return 'Nintendo';
+
     default:
       return categoryName;
   }

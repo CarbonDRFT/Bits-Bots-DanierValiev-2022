@@ -1,33 +1,35 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
 import MainFormLayout from '../layouts/MainFormLayout';
 import Button from '../components/elements/Button';
 import Input from '../components/elements/Input';
+import { loginSchema } from '../validations/userValidations';
 
 const LoginPage = (): JSX.Element => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const auth = getAuth();
   const navigate = useNavigate();
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  }
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+  
+  const { ref: emailRef, ...emailProps} = register('email');  
+  const { ref: passwordRef, ...passwordProps} = register('password');
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  }
+  const onSubmit = async (data: any) => {
+    const { email, password } = data;
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
     try {
       const loginResult = await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem('currentUser', JSON.stringify(loginResult));
       navigate('/');
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      toast.error('The login credentials are incorrect!');
     }
   }
 
@@ -37,7 +39,7 @@ const LoginPage = (): JSX.Element => {
     >
       <form
         className="auth-box__form"
-        onSubmit={(e: FormEvent) => handleSubmit(e)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="form__title">Sign in</h1>
         <p className="form__description">
@@ -46,24 +48,23 @@ const LoginPage = (): JSX.Element => {
         <div className="form__inputs">
           <Input
             label="Email"
-            type="email"
-            name="email"
-            required
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleEmailChange(e)}
+            innerRef={emailRef}
+            error={errors?.email?.message as string}
+            {...emailProps}
           />
           <Input
             label="Password"
             type="password"
-            name="password"
-            required
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handlePasswordChange(e)}  
+            innerRef={passwordRef}
+            error={errors?.password?.message as string}
+            {...passwordProps}
           />
         </div>
         <div className="form__submit-wrap">
           <p>
             Don't have an account yet? Click <Link to="/register">here</Link> to register.
           </p>
-          <Button text="Login" variant="primary" />
+          <Button text="Login" variant="primary" type="onSubmit" />
         </div>
       </form>
     </MainFormLayout>
