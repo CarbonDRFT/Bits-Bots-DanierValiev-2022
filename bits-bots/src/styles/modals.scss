@@ -9,7 +9,7 @@
   height: 100vh;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     width: 100%;
@@ -19,7 +19,7 @@
     z-index: 9;
   }
 
-  &__content{
+  &__content {
     display: flex;
     flex-direction: column;
     margin: 2.4rem;
@@ -30,6 +30,7 @@
     color: var(--textColor);
     border: 1px solid var(--shadowColor);
     z-index: 10;
+    border-radius: 1rem;
 
     input {
       margin-bottom: 1.2rem;
@@ -40,5 +41,11 @@
     display: flex;
     gap: 1.2rem;
     margin-top: 2.4rem;
+    border-radius: 0.5rem;
   }
+}
+
+.products-modal__header {
+  text-align: center;
+  margin: 2rem 0;
 }

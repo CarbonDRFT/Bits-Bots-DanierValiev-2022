@@ -1,6 +1,7 @@
 .order-box {
   padding: 2.4rem;
   border: 1px solid var(--shadowColor);
+  border-radius: 1rem;
 
   &:not(:last-of-type) {
     margin-bottom: 4.8rem;
