@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import DefaultLayout from '../layouts/DefaultLayout';
-import ContentWrapper from '../components/elements/ContentWrapper';
-import Loader from '../components/elements/Loader';
-import Button from '../components/elements/Button';
-import Icon from '../components/elements/Icon';
-import Collection from '../components/elements/Collection';
-import ProductBox from '../components/blocks/ProductBox';
+import DefaultLayout from "../layouts/DefaultLayout";
+import ContentWrapper from "../components/elements/ContentWrapper";
+import Loader from "../components/elements/Loader";
+import Button from "../components/elements/Button";
+import Icon from "../components/elements/Icon";
+import Collection from "../components/elements/Collection";
+import ProductBox from "../components/blocks/ProductBox";
 import {
   fetchProductData,
   fetchProductInfo,
-} from '../functions/fetchFunctions';
+} from "../functions/fetchFunctions";
 import {
   addProductToCart,
   toggleProductInFavourites,
-} from '../redux/slices/shoppingSlice';
+} from "../redux/slices/shoppingSlice";
 
-import type { RootState } from '../redux/store';
-import type { Product } from '../typings/productTypes';
+import type { RootState } from "../redux/store";
+import type { Product } from "../typings/productTypes";
 
-import '../styles/product.scss';
+import "../styles/product.scss";
 
 const ProductInfoPage = (): JSX.Element => {
   const [productData, setProductData] = useState<Product[]>([]);
@@ -55,7 +55,7 @@ const ProductInfoPage = (): JSX.Element => {
   };
 
   useEffect(() => {
-    fetchProductInfo(params.id ?? '').then((data) => {
+    fetchProductInfo(params.id ?? "").then((data) => {
       setProductInfo(data);
       setIsProductLoading(false);
     });
@@ -98,18 +98,18 @@ const ProductInfoPage = (): JSX.Element => {
               className="two-columns__image"
             />
             <div className="two-columns__content">
-              <h2 className="two-columns__title">{productInfo.title}</h2>
+              <h1 className="two-columns__title">{productInfo.title}</h1>
               <p className="two-columns__description">
                 {productInfo.description}
               </p>
-              <p className="two-columns__price">
+              <h2 className="two-columns__price">
                 <b>{productInfo.price} kr.</b>
-              </p>
+              </h2>
               <div className="two-columns__buttons">
                 <Button
                   text="Go back"
                   variant="blue"
-                  handler={() => navigate('/')}
+                  handler={() => navigate("/")}
                 />
                 <Button
                   text="Add to cart"
@@ -118,7 +118,7 @@ const ProductInfoPage = (): JSX.Element => {
                 />
                 <div
                   className={`product-box__like-icon ${
-                    isLiked ? 'product-box__like-icon--liked' : ''
+                    isLiked ? "product-box__like-icon--liked" : ""
                   }`}
                   onClick={handleAddToFavourites}
                 >
