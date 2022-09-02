@@ -20,3 +20,7 @@ as I have done it before. Also created a admin page where new products can be ad
 # Product images taken from www.gamestop.com
 
 I got the permission to use the images from gamestop, screenshot will be provided inside github.
+
+# Clickup Gantt:
+
+https://sharing.clickup.com/43243575/l/h/197p1q-104/0465867f55bae81
